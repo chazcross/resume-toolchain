@@ -1,3 +1,19 @@
+<!--
+FORMAT REFERENCE
+================
+YAML front matter:
+  name, email         — required (drive the header)
+  phone, location,
+  linkedin, github    — optional (omit any you don't want)
+
+Body:
+  ##  Section heading  → bold, uppercase, rule underneath
+  ### Entry heading    → bold (put title — Org | Location | Date inline as plain text)
+  -   Bullet           → em-dash list item
+  **bold**             → inline bold (use in Skills, etc.)
+
+Note: dates and locations in ### headings are inline text — they won't right-align.
+-->
 ---
 name: Your Name
 email: you@example.com
