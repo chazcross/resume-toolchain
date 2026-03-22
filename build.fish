@@ -6,18 +6,19 @@
 #   fish build.fish all          # source + all tailored/*.md
 #   fish build.fish tailored/2026-03-18-acme-engineer.md
 
-set -l target (or $argv[1] "source")
+set -l target $argv[1]
+set -q target[1]; or set target source
 set -l template (status dirname)/template/resume.typ
 
 function compile
     set -l src $argv[1]
     set -l name (basename $src .md)
+    set -l typ /tmp/$name.typ
     set -l out output/$name.pdf
     echo "Building $src → $out"
-    pandoc $src \
-        --pdf-engine=typst \
-        --template=$template \
-        -o $out
+    mkdir -p output
+    pandoc $src --template=$template -o $typ
+    and typst compile $typ $out
     and echo "  ✓ $out"
     or echo "  ✗ failed: $src"
 end
